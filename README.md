@@ -51,7 +51,7 @@ Most portfolio content is centralized in `src/data/data.ts`.
 The contact form uses Formspree through an environment variable. Create `.env.local`:
 
 ```bash
-NEXT_PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/your-form-id
+NEXT_PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/xykqpybd
 ```
 
 Restart `npm run dev` after changing environment variables. If the variable is missing, the form disables itself and the direct email link remains available.

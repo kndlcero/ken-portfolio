@@ -8,13 +8,18 @@ type FormState = "idle" | "loading" | "success" | "error";
 type CopyState = "idle" | "copied" | "error";
 
 const FORMSPREE_ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
+const normalizeFormspreeEndpoint = (endpoint?: string) => {
+  if (!endpoint) return "";
+  return endpoint.startsWith("https://formspree.io/f/") ? endpoint : `https://formspree.io/f/${endpoint}`;
+};
+const formspreeEndpoint = normalizeFormspreeEndpoint(FORMSPREE_ENDPOINT);
 
 export default function Contact() {
   const sectionRef = useRevealOnScroll<HTMLElement>();
   const [formState, setFormState] = useState<FormState>("idle");
   const [fields, setFields] = useState({ name: "", email: "", message: "" });
   const [copyState, setCopyState] = useState<CopyState>("idle");
-  const formReady = Boolean(FORMSPREE_ENDPOINT);
+  const formReady = Boolean(formspreeEndpoint);
   const mailtoHref = `mailto:${personalInfo.email}?subject=${encodeURIComponent(
     fields.name ? `Portfolio inquiry from ${fields.name}` : "Portfolio inquiry"
   )}&body=${encodeURIComponent(
@@ -37,17 +42,20 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!FORMSPREE_ENDPOINT) {
+    if (!formspreeEndpoint) {
       setFormState("error");
       return;
     }
 
     setFormState("loading");
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(formspreeEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(fields),
+        body: JSON.stringify({
+          ...fields,
+          _subject: fields.name ? `Portfolio message from ${fields.name}` : "New portfolio message",
+        }),
       });
       if (res.ok) {
         setFormState("success");
