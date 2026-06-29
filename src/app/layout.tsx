@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/context/ThemeContext";
 import "./globals.css";
 
+const siteUrl = "https://ken-portfolio-drab.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kenaudielucero.vercel.app"),
+  metadataBase: new URL(siteUrl),
   title: "Ken Audie Lucero | Backend Engineer",
   description:
     "Backend-focused CS junior at PUP. Building APIs, compilers, and real-time systems. President's List & Dean's List. Special contributor at WCTP 2025.",
@@ -21,7 +25,7 @@ export const metadata: Metadata = {
     description:
       "Backend-focused CS junior at PUP. Building APIs, compilers, and real-time systems. Published contributor at WCTP 2025.",
     type: "website",
-    url: "https://kenaudielucero.vercel.app",
+    url: siteUrl,
     images: [
       {
         url: "/og-image.svg",
@@ -52,6 +56,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="noise antialiased">
         <ThemeProvider>{children}</ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

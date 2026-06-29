@@ -299,7 +299,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Databases",
     icon: "DB",
-    skills: ["PostgreSQL", "MySQL", "SQL"],
+    skills: ["PostgreSQL", "MySQL"],
   },
   {
     category: "Frontend",
@@ -312,9 +312,9 @@ export const skillGroups: SkillGroup[] = [
     skills: ["Git", "GitHub", "Maven", "Docker", "Postman", "Vite"],
   },
   {
-    category: "ML, Data & Algorithms",
-    icon: "ML",
-    skills: ["XLM-RoBERTa", "Python Data Analysis", "Finite State Automata", "BFS", "Dijkstra", "NLP"],
+    category: "ML & Data Science",
+    icon: "ML&DS",
+    skills: ["PyTorch", "Hugging Face", "Scikit-Learn", "Pandas", "NumPy", "NLP"],
   },
 ];
 
