@@ -335,7 +335,7 @@ export const certifications: Certification[] = [
     name: "Data Literacy Certification",
     issuer: "DataCamp",
     date: "July 2025",
-    url: "https://datacamp.com/skillverification/DL0036995530047",
+    url: "https://datacamp.com/skill-verification/DL0036995530047",
   },
   {
     name: "Get Started with Google Workspace Tools",
